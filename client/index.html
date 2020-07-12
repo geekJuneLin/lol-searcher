@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>LOL Searcher</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <form id="search" class="card card-sm">
+            <div class="card-body row no-gutters align-items-center">
+              <div class="col-auto">
+                <i class="fas fa-search h4 text-body"></i>
+              </div>
+
+              <div class="col">
+                <input
+                  id="name"
+                  class="form-control form-control-lg form-control-borderless"
+                  style="border: none;"
+                  type="search"
+                  placeholder="Enter the summoner's name"
+                />
+              </div>
+
+              <div class="col-auto">
+                <button class="btn btn-lg btn-success" type="submit">
+                  Find
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <section class="my-5">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th data-sort="name">Win Status</th>
+            <th data-sort="name">Champion</th>
+            <th data-sort="name">Lanes</th>
+          </tr>
+        </thead>
+        <tbody id="matches_content">
+          <!-- <tr>
+            <td>
+              <a
+                href="https://csshint.com/css-animated-backgrounds/"
+                target="_blank"
+                >Top 20 CSS Animated Backgrounds
+              </a>
+            </td>
+            <td>
+              <a
+                href="https://csshint.com/css-animated-backgrounds/"
+                target="_blank"
+                >Top 20 CSS Animated Backgrounds
+              </a>
+            </td>
+            <td>
+              <a
+                href="https://csshint.com/css-animated-backgrounds/"
+                target="_blank"
+                >Top 20 CSS Animated Backgrounds
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <a
+                href="https://csshint.com/logo-with-typography/"
+                target="_blank"
+                >30 Examples of logo with typography for Inspiration and Ideas
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <a
+                href="https://csshint.com/logo-with-typography/"
+                target="_blank"
+                >30 Examples of logo with typography for Inspiration and Ideas
+              </a>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+    </section>
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
