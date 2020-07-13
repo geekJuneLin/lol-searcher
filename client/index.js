@@ -35,17 +35,33 @@ searchMatches = (id) => {
     });
 };
 
-displayMatches = (matches) => {
-  const tbody = document.createElement("tbody");
-
+displayMatches = async (matches) => {
   matches.forEach((match) => {
     const tr = document.createElement("tr");
+
     const td = document.createElement("td");
+    const td1 = document.createElement("td");
+    const td2 = document.createElement("td");
+
     td.innerHTML = match.lane;
+    getChampionName(match.champion).then((data) => {
+      td1.innerHTML = data;
+    });
+    td2.innerHTML = "";
+
+    tr.appendChild(td2);
+    tr.appendChild(td1);
     tr.appendChild(td);
-    tbody.appendChild(tr);
+    matchesSection.appendChild(tr);
   });
 
-  matchesSection.appendChild(tbody);
   console.log(matches);
+};
+
+getChampionName = (id) => {
+  return fetch(`http://localhost:5000/api/champion/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      return data.name;
+    });
 };

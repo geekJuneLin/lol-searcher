@@ -15,10 +15,12 @@ app.use(cors());
 const champRotationRoute = require("./routes/champRotation");
 const summoner = require("./routes/summoner");
 const matches = require("./routes/matches");
+const champion = require("./routes/champions");
 
 app.use("/api/champ_rotation", champRotationRoute);
 app.use("/api/summoner", summoner);
 app.use("/api/match/byAccount", matches);
+app.use("/api/champion", champion);
 
 const port = process.env.PORT || 5000;
 
