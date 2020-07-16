@@ -1,42 +1,31 @@
+import { searchSummoner, searchMatches, getChampionName } from "./API.js";
+
 const form = document.querySelector("#search");
 const matchesSection = document.querySelector("#matches_content");
 const nameInput = document.querySelector("#name");
 
-form.addEventListener("submit", handleFormSubmit);
+form.addEventListener("submit", handleSummonerNameSearch);
 
-function handleFormSubmit(e) {
+// handle the summoner name search actioon
+async function handleSummonerNameSearch(e) {
   e.preventDefault();
 
-  let name;
+  let summonerName;
   if (nameInput) {
-    name = nameInput.value;
+    summonerName = nameInput.value;
   }
-  console.log("name: " + name);
 
-  searchSummoner(name).then(displayMatches);
+  const { name, id } = await searchSummoner(summonerName);
+
+  const { matches } = await searchMatches(id);
+
+  displayMatches(matches);
 }
 
-searchSummoner = (name) => {
-  return fetch(`http://localhost:5000/api/summoner/${name}`)
-    .then((res) => res.json())
-    .then((data) => {
-      return searchMatches(data.id);
-    });
-};
-
-searchMatches = (id) => {
-  return fetch(`http://localhost:5000/api/match/byAccount/${id}`)
-    .then((res1) => res1.json())
-    .then((data1) => {
-      if (data1) {
-        nameInput.value = "";
-        return data1.matches;
-      }
-    });
-};
-
-displayMatches = async (matches) => {
-  matches.forEach((match) => {
+// @desc    display the info of every single match
+// @param   The array of the matches
+const displayMatches = async (matches) => {
+  matches.forEach(async (match) => {
     const tr = document.createElement("tr");
 
     const td = document.createElement("td");
@@ -44,9 +33,9 @@ displayMatches = async (matches) => {
     const td2 = document.createElement("td");
 
     td.innerHTML = match.lane;
-    getChampionName(match.champion).then((data) => {
-      td1.innerHTML = data;
-    });
+    const { name: championName } = await getChampionName(match.champion);
+
+    td1.innerHTML = championName;
     td2.innerHTML = "";
 
     tr.appendChild(td2);
@@ -54,14 +43,4 @@ displayMatches = async (matches) => {
     tr.appendChild(td);
     matchesSection.appendChild(tr);
   });
-
-  console.log(matches);
-};
-
-getChampionName = (id) => {
-  return fetch(`http://localhost:5000/api/champion/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      return data.name;
-    });
 };
